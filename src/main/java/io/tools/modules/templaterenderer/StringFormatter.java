@@ -28,7 +28,7 @@ public class StringFormatter {
         int width =  getWidth();
         char padCharacter =  getPadCharacter();
         if (isNumericValueFlag && isNumeric()) {
-            value = removeDecimalPoint();
+            value = replaceDecimalPoint();
             padCharacter = '0';
         }
         return formatString(width, padCharacter);
@@ -66,8 +66,8 @@ public class StringFormatter {
         return padding+value;
     }
 
-    private String removeDecimalPoint() {
-        return value.replace(".", "");
+    private String replaceDecimalPoint() {
+        return value.replace(".", ",");
     }
 
     private boolean isNumeric() {

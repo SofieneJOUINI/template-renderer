@@ -230,7 +230,7 @@ public class TemplateRendererUnitTests {
         // When
         String result = renderer.renderFromTemplateWithAttributes(template, values);
 
-        assertEquals("Total: 0000123456", result);
+        assertEquals("Total: 0001234,56", result);
     }
 
     @Test

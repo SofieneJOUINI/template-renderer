@@ -29,6 +29,6 @@ The library is useful for generating formatted strings in applications such as r
   - If specified, it cannot be used in conjunction with the numeric flag.
 
 - **Numeric Flag (`--numeric`)**:
-  - If specified, the renderer will format the value as a numeric value without decimal places, and the value will be padded by zeros.
+  - If specified, the renderer will format the value as a numeric value by replacing the decimal point to comma, and the value will be padded by zeros.
   - should be specified with `width` `(width=10, --numeric)`
   - If specified, it cannot be used in conjunction with a padding character.
