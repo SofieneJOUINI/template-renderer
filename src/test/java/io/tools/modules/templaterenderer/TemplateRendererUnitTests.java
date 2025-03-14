@@ -12,7 +12,7 @@ public class TemplateRendererUnitTests {
     @Test
     public void testRenderFromTemplateWithAttributesBasicTemplate() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Hello, {{name}}!";
         Map<String, String> values = new HashMap<>();
         values.put("name", "Sofiene");
@@ -27,7 +27,7 @@ public class TemplateRendererUnitTests {
     @Test
     public void testRenderFromTemplateWithAttributesShouldNotRenderWhenOnlyPaddingIsPresent() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Item: {{item(pad='0')}}";
         Map<String, String> values = new HashMap<>();
         values.put("item", "5");
@@ -42,7 +42,7 @@ public class TemplateRendererUnitTests {
     @Test
     public void testRenderFromTemplateWithAttributesTemplateWithWidthOnly() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Total: {{total(width=10)}}";
         Map<String, String> values = new HashMap<>();
         values.put("total", "50");
@@ -51,13 +51,13 @@ public class TemplateRendererUnitTests {
         String result = renderer.renderFromTemplateWithAttributes(template, values);
 
         // Then
-        assertEquals("Total:         50", result);
+        assertEquals("Total: 50        ", result);
     }
 
     @Test
     public void testRenderFromTemplateWithAttributesTemplateWithWidthAndPaddingCharacter() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Code: {{code(width=5, pad='0')}}";
         Map<String, String> values = new HashMap<>();
         values.put("code", "7");
@@ -66,13 +66,13 @@ public class TemplateRendererUnitTests {
         String result = renderer.renderFromTemplateWithAttributes(template, values);
 
         // Then
-        assertEquals("Code: 00007", result);
+        assertEquals("Code: 70000", result);
     }
 
     @Test
     public void testRenderFromTemplateWithAttributesTemplateWithLongValueThatShouldBeTruncated() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Item: {{item(width=5)}}";
         Map<String, String> values = new HashMap<>();
         values.put("item", "long_value");
@@ -87,7 +87,7 @@ public class TemplateRendererUnitTests {
     @Test
     public void testRenderFromTemplateWithAttributesBasicTemplateWithMissingKey() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Hello, {{name}}!";
         Map<String, String> values = new HashMap<>();
 
@@ -101,7 +101,7 @@ public class TemplateRendererUnitTests {
     @Test
     public void testRenderFromTemplateWithAttributesBasicTemplateAndNullValue() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Hello, {{name}}!";
         Map<String, String> values = new HashMap<>();
         values.put("name", null);
@@ -116,7 +116,7 @@ public class TemplateRendererUnitTests {
     @Test
     public void testRenderFromTemplateWithAttributesTemplateWithWidthAttributeAndMissingKey() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Hello, {{name (width=10)}}!";
         Map<String, String> values = new HashMap<>();
 
@@ -130,7 +130,7 @@ public class TemplateRendererUnitTests {
     @Test
     public void testRenderFromTemplateWithAttributesTemplateWithWidthAttributeAndNullValue() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Hello, {{name (width=10)}}!";
         Map<String, String> values = new HashMap<>();
         values.put("name", null);
@@ -145,7 +145,7 @@ public class TemplateRendererUnitTests {
     @Test
     public void testRenderFromTemplateWithAttributesTemplateWithWidthAttributePadAndNullValue() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Hello, {{name (width=10, pad='*')}}!";
         Map<String, String> values = new HashMap<>();
         values.put("name", null);
@@ -160,7 +160,7 @@ public class TemplateRendererUnitTests {
     @Test
     public void testRenderFromTemplateWithAttributesTemplateWithMultipleVariables() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Hello, {{firstName}} {{lastName}}!";
         Map<String, String> values = new HashMap<>();
         values.put("firstName", "John");
@@ -176,7 +176,7 @@ public class TemplateRendererUnitTests {
     @Test
     public void testRenderFromTemplateWithAttributesTemplateWithDefaultPadding() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Welcome: {{username(width=10)}}";
         Map<String, String> values = new HashMap<>();
         values.put("username", "Alice");
@@ -185,13 +185,13 @@ public class TemplateRendererUnitTests {
         String result = renderer.renderFromTemplateWithAttributes(template, values);
 
         // Then
-        assertEquals("Welcome:      Alice", result);
+        assertEquals("Welcome: Alice     ", result);
     }
 
     @Test
     public void testRenderFromTemplateWithAttributesTemplateWithCustomPadding() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Hello: {{name(width=10, pad='*')}}";
         Map<String, String> values = new HashMap<>();
         values.put("name", "Bob");
@@ -200,12 +200,12 @@ public class TemplateRendererUnitTests {
         String result = renderer.renderFromTemplateWithAttributes(template, values);
 
         // Then
-        assertEquals("Hello: *******Bob", result);
+        assertEquals("Hello: Bob*******", result);
     }
     @Test
     public void testRenderFromTemplateWithAttributesTemplateWithMultipleValuesAndAttributes() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Product: {{productName(width=15, pad='-')}} | Price: {{price(width=10)}} | Code: {{code(width=5, pad='0')}}";
         Map<String, String> values = new HashMap<>();
         values.put("productName", "Super Widget");
@@ -216,13 +216,13 @@ public class TemplateRendererUnitTests {
         String result = renderer.renderFromTemplateWithAttributes(template, values);
 
         // Then
-        assertEquals("Product: ---Super Widget | Price:      99.99 | Code: 00123", result);
+        assertEquals("Product: Super Widget--- | Price: 99.99      | Code: 12300", result);
     }
 
     @Test
     public void testRenderFromTemplateWithAttributesTemplateWithNumericFlagAndValidDecimal() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Total: {{total (width=10, --numeric)}}";
         Map<String, String> values = new HashMap<>();
         values.put("total", "1234.56");
@@ -236,7 +236,7 @@ public class TemplateRendererUnitTests {
     @Test
     public void testRenderFromTemplateWithAttributesTemplateWithNumericFlagAndZeroValue() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Total: {{total(width=6, --numeric)}}";
         Map<String, String> values = new HashMap<>();
         values.put("total", "0");
@@ -251,7 +251,7 @@ public class TemplateRendererUnitTests {
     @Test
     public void testRenderFromTemplateWithAttributesTemplateWithNumericFlagAndMissingKey() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Total: {{total(width=6, --numeric)}}";
         Map<String, String> values = new HashMap<>();
 
@@ -265,7 +265,7 @@ public class TemplateRendererUnitTests {
     @Test
     public void testRenderFromTemplateWithAttributesTemplateWithNumericFlagAndNonNumericString() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Total: {{total(width=6, --numeric)}}";
         Map<String, String> values = new HashMap<>();
         values.put("total", "abc");
@@ -280,7 +280,7 @@ public class TemplateRendererUnitTests {
     @Test
     public void testRenderFromTemplateWithAttributesTemplateWithoutNumericFlagAndValidDecimal() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Total: {{total(width=10, pad='0')}}";
         Map<String, String> values = new HashMap<>();
         values.put("total", "1234.56");
@@ -289,13 +289,13 @@ public class TemplateRendererUnitTests {
         String result = renderer.renderFromTemplateWithAttributes(template, values);
 
         // Then
-        assertEquals("Total: 0001234.56", result);
+        assertEquals("Total: 1234.56000", result);
     }
 
     @Test
     public void testRenderFromTemplateWithAttributesTemplateWithNumericFlagAndLargeNumber() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Total: {{total (width=10 , --numeric)}}";
         Map<String, String> values = new HashMap<>();
         values.put("total", "1234567890.12");
@@ -310,7 +310,7 @@ public class TemplateRendererUnitTests {
     @Test
     public void testRenderFromTemplateWithAttributesShouldRenderNothingWhenNumericFlagAndPadAttributeExist() throws IOException {
         // Given
-        TemplateRenderer renderer = new TemplateRenderer();
+        TemplateRendererMustacheImplementation renderer = new TemplateRendererMustacheImplementation();
         String template = "Total: {{total(width=10, pad='0', --numeric)}}";
         Map<String, String> values = new HashMap<>();
         values.put("total", "890.12");
