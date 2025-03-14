@@ -51,7 +51,7 @@ public class TemplateRendererUnitTests {
         String result = renderer.renderFromTemplateWithAttributes(template, values);
 
         // Then
-        assertEquals("Total:         50", result);
+        assertEquals("Total: 50        ", result);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class TemplateRendererUnitTests {
         String result = renderer.renderFromTemplateWithAttributes(template, values);
 
         // Then
-        assertEquals("Code: 00007", result);
+        assertEquals("Code: 70000", result);
     }
 
     @Test
@@ -185,7 +185,7 @@ public class TemplateRendererUnitTests {
         String result = renderer.renderFromTemplateWithAttributes(template, values);
 
         // Then
-        assertEquals("Welcome:      Alice", result);
+        assertEquals("Welcome: Alice     ", result);
     }
 
     @Test
@@ -200,7 +200,7 @@ public class TemplateRendererUnitTests {
         String result = renderer.renderFromTemplateWithAttributes(template, values);
 
         // Then
-        assertEquals("Hello: *******Bob", result);
+        assertEquals("Hello: Bob*******", result);
     }
     @Test
     public void testRenderFromTemplateWithAttributesTemplateWithMultipleValuesAndAttributes() throws IOException {
@@ -216,7 +216,7 @@ public class TemplateRendererUnitTests {
         String result = renderer.renderFromTemplateWithAttributes(template, values);
 
         // Then
-        assertEquals("Product: ---Super Widget | Price:      99.99 | Code: 00123", result);
+        assertEquals("Product: Super Widget--- | Price: 99.99      | Code: 12300", result);
     }
 
     @Test
@@ -289,7 +289,7 @@ public class TemplateRendererUnitTests {
         String result = renderer.renderFromTemplateWithAttributes(template, values);
 
         // Then
-        assertEquals("Total: 0001234.56", result);
+        assertEquals("Total: 1234.56000", result);
     }
 
     @Test

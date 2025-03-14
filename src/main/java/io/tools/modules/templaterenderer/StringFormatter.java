@@ -66,7 +66,9 @@ public class StringFormatter {
         String padding = Stream.generate(() -> String.valueOf(padCharacter))
                 .limit(paddingNeeded)
                 .collect(Collectors.joining());
-        return padding+value;
+        if (isNumericValueFlag)
+            return addPaddingLeft(padding);
+        return addPaddingRight(padding);
     }
 
     private String replaceDecimalPoint() {
@@ -80,5 +82,13 @@ public class StringFormatter {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    private String addPaddingRight(String padding) {
+        return value + padding;
+    }
+
+    private String addPaddingLeft(String padding) {
+        return padding + value;
     }
 }
