@@ -7,7 +7,10 @@ import java.util.stream.Stream;
 
 public class StringFormatter {
 
+    public static final char DECIMAL_DELIMITER = ',';
     public static final char DEFAULT_PAD_CHARACTER = ' ';
+    public static final char NUMERIC_PAD_CHARACTER = '0';
+    public static final String DEFAULT_VALUE = "";
 
     private String value;
     private String widthAttribute;
@@ -23,13 +26,13 @@ public class StringFormatter {
 
     public String format() {
         if(Objects.isNull(value)) {
-            value = "";
+            value = DEFAULT_VALUE;
         }
         int width =  getWidth();
         char padCharacter =  getPadCharacter();
         if (isNumericValueFlag && isNumeric()) {
             value = replaceDecimalPoint();
-            padCharacter = '0';
+            padCharacter = NUMERIC_PAD_CHARACTER;
         }
         return formatString(width, padCharacter);
     }
@@ -67,7 +70,7 @@ public class StringFormatter {
     }
 
     private String replaceDecimalPoint() {
-        return value.replace(".", ",");
+        return value.replace('.', DECIMAL_DELIMITER);
     }
 
     private boolean isNumeric() {

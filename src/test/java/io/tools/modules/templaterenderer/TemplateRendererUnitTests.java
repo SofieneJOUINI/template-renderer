@@ -296,7 +296,7 @@ public class TemplateRendererUnitTests {
     public void testRenderFromTemplateWithAttributesTemplateWithNumericFlagAndLargeNumber() throws IOException {
         // Given
         TemplateRenderer renderer = new TemplateRenderer();
-        String template = "Total: {{total(width=10, --numeric)}}";
+        String template = "Total: {{total (width=10 , --numeric)}}";
         Map<String, String> values = new HashMap<>();
         values.put("total", "1234567890.12");
 

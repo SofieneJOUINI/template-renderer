@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 public class TemplateRenderer implements TemplateRendererPort {
 
-    private static final String attributesRegexInMustache ="\\{\\{(\\w+)(?:\\s*\\(\\s*width=(\\d+)(?:,\\s*pad='([^']*)'|,\\s*(--numeric))?\\s*\\))?\\s*\\}\\}";
+    private static final String attributesRegexInMustache = "\\{\\{(\\w+)(?:\\s*\\(\\s*width=(\\d+)\\s*(?:,\\s*pad='([^']*)'|,\\s*(--numeric))?\\s*\\))?\\s*}}";
     private static final Pattern attributesPattern = Pattern.compile(attributesRegexInMustache);
 
     @Override
