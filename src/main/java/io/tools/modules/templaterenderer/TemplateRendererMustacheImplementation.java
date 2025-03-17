@@ -37,20 +37,21 @@ class TemplateRendererMustacheImplementation implements TemplateRenderer {
 
     private Map<String, String> formatValues(Map<String, String> values, Matcher matcher) {
         Map<String, String> formattedValues = new HashMap<>();
-        while (matcher.find()) {
-            String key = matcher.group(1);
-            String widthAttribute = matcher.group(2);
-            String padCharacterAttribute = matcher.group(3);
-            String numericFlag = matcher.group(4) ;
+        matcher.results()
+                .forEach( matchResult -> {
+                    String key = matchResult.group(1);
+                    String widthAttribute = matchResult.group(2);
+                    String padCharacterAttribute = matchResult.group(3);
+                    String numericFlag = matchResult.group(4) ;
 
-            boolean isNumericFlagEnabled = Objects.nonNull(numericFlag);
+                    boolean isNumericFlagEnabled = Objects.nonNull(numericFlag);
 
-            String value = setDefaultValueIfNumericFlagIsEnabled(values, isNumericFlagEnabled, key);
+                    String value = setDefaultValueIfNumericFlagIsEnabled(values, isNumericFlagEnabled, key);
 
-            formattedValues.put(key,
+                    formattedValues.put(key,
                     StringFormatterFactory.createFormatter(value,widthAttribute,padCharacterAttribute,isNumericFlagEnabled)
                             .format());
-        }
+        });
         return formattedValues;
     }
 
